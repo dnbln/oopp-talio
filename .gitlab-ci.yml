@@ -1,0 +1,35 @@
+image: gradle:8.0.1-jdk19-alpine
+
+variables:
+  # Disable the Gradle daemon to ensure isolated runs of the CI pipeline.
+  GRADLE_OPTS: "-Dorg.gradle.daemon=false"
+
+build:
+  script:
+    - ./gradlew build
+
+  artifacts:
+    paths:
+      - ./build/libs/
+
+code_coverage:
+  script:
+    - ./gradlew AggregateJacocoReport
+    # preserve coverage information in an easy-to-reach folder
+    - mv build/reports/jacoco/AggregateJacocoReport/html ./coverage
+    - mv build/reports/jacoco/AggregateJacocoReport/AggregateJacocoReport.xml ./coverage/report.xml
+    - COVERAGE=$(cat coverage/index.html | grep -o -E "Total[^%]+?%" | sed -E "s/<.*>//" | sed -E "s/Total/TestCoverage:/" | sed -E "s/TestCoverage://" | sed -E "s/%//")
+
+    # Check if coverage is greater than 60%
+    - if [ $(echo "$COVERAGE > 50" | bc -l) -eq 1 ]; then
+      echo "Code coverage is $COVERAGE%. Pipeline passed!";
+      else
+      echo "Code coverage is $COVERAGE%. Pipeline failed!";
+      exit 1;
+      fi
+
+  artifacts:
+    paths:
+      - ./coverage
+    reports:
+      junit: ./*/build/test-results/test/**/TEST-*

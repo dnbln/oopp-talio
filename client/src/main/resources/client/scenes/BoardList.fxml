@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.VBox?>
+<AnchorPane onKeyPressed="#handleKeyPressed" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+            minWidth="-Infinity" prefHeight="400.0"
+            prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="client.scenes.BoardListCtrl">
+    <VBox spacing="20.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0"
+          AnchorPane.topAnchor="10.0">
+        <ListView fx:id="boardListView"/>
+        <FlowPane>
+            <Button fx:id="addBoardButton" onAction="#addNewBoard" text="Enter Invite Link"/>
+            <Button fx:id="removeBoardButton" onAction="#removeBoard" text="Remove Board From Workspace"/>
+            <Button onAction="#createNewBoard" text="Create Board"/>
+            <Button onAction="#deleteBoard" text="Delete Board"/>
+            <Button onAction="#changeBoardTitle" text="Change the Name"/>
+            <Button layoutX="193.0" layoutY="10.0" onAction="#goToSelectedBoard" text="Connect to selected board"/>
+            <Button mnemonicParsing="false" onAction="#backToServerConnect" text="Disconnect"/>
+        </FlowPane>
+    </VBox>
+</AnchorPane>

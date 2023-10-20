@@ -1,0 +1,19 @@
+.text-field {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-border-width: 0 0 1 0;
+}
+
+.text-field:hover {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0 0 1 0;
+    -fx-background-radius: 0;
+    -fx-border-color: -fx-text-box-border;
+    -fx-border-width: 0 0 1 0;
+}
+
+.text-field:focused {
+    -fx-background-color: transparent;
+    -fx-border-color: -fx-focus-color;
+}

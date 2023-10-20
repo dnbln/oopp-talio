@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox onKeyPressed="#handleKeyPressed" prefHeight="394.0" prefWidth="523.0" spacing="10.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.scenes.CardDetailsCtrl">
+    <TextField fx:id="taskName" promptText="Task Name" style="-fx-border-radius: 5; -fx-border-width: 1; -fx-border-color: black;" />
+    <TextField fx:id="taskDescription" promptText="Text Description" style="-fx-border-style: solid; -fx-border-radius: 5; -fx-border-width: 1; -fx-border-color: black;" />
+    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tasks:" />
+    <ListView fx:id="subTasks" prefHeight="226.0" style="-fx-border-color: black; -fx-border-style: solid; -fx-border-radius: 5; -fx-border-width: 1;" VBox.vgrow="NEVER" />
+    <Button mnemonicParsing="false" onAction="#addSubTasks" text="Add Sub Task">
+        <font>
+            <Font size="8.0" />
+        </font>
+    </Button>
+    <GridPane hgap="5.0">
+        <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#addTag" text="Add tag">
+            <font>
+                <Font size="12.0" />
+            </font>
+        </Button>
+        <ListView fx:id="tags" minHeight="-Infinity" orientation="HORIZONTAL" prefHeight="45" style="-fx-background-color: null;" GridPane.columnIndex="1" HBox.hgrow="ALWAYS">
+            <padding>
+                <Insets right="5.0" />
+            </padding>
+        </ListView>
+        <columnConstraints>
+            <ColumnConstraints halignment="LEFT" hgrow="NEVER" />
+            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints vgrow="NEVER" />
+        </rowConstraints>
+    </GridPane>
+    <StackPane>
+        <Button fx:id="deleteButton" onAction="#deleteCard" text="Delete" textFill="RED" visible="false" StackPane.alignment="CENTER_LEFT">
+            <font>
+                <Font size="12.0" />
+            </font>
+        </Button>
+        <HBox alignment="CENTER" maxWidth="-Infinity" spacing="10" StackPane.alignment="CENTER_RIGHT">
+            <Button mnemonicParsing="false" onAction="#showBoard" text="Cancel">
+                <font>
+                    <Font size="12.0" />
+                </font>
+            </Button>
+            <Button onAction="#apply" text="Apply">
+                <font>
+                    <Font size="12.0" />
+                </font>
+            </Button>
+        </HBox>
+    </StackPane>
+    <TilePane alignment="CENTER_RIGHT" prefWidth="502.0">
+    </TilePane>
+    <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+    </padding>
+</VBox>
